@@ -6,7 +6,7 @@ export function getAuthors(token) {
     
     return {
         type: 'SAGE_GET_AUTHORS',
-        payload: token
+        payload: {token}
     }
 }
 
@@ -43,8 +43,9 @@ export function attAuthor(name, id, token) {
 
 }
 
-export function deleteAuthor(id,token) {
+export function deleteAuthor(e,id,token) {
     
+    e.target.parentNode.style.display = "none";
     return {
         type:'SAGA_DELETE_AUTHOR',
         payload: {id, token}

@@ -16,7 +16,7 @@ function* getUser(action) {
 
 function* getAuthors(action) {
   try {
-    const resp = yield call(ApiService.ListaAuthors, action.payload)
+    const resp = yield call(ApiService.ListaAuthors, action.payload.token)
     yield put({ type: 'GET_AUTHORS', payload: resp.data })
   } catch (err) {
 
@@ -49,8 +49,9 @@ function* attAuthor(action) {
     PopUp.exibeMensagem('success', "Author was updated with success");
     yield put({ type: 'CLEAN_NAME' })
 
-    const resp = yield call(ApiService.ListaAuthors, action.payload.token)
-    yield put({ type: 'GET_AUTHORS', payload: resp.data })
+    getAuthors(action)
+    // const resp = yield call(ApiService.ListaAuthors, action.payload.token)
+    // yield put({ type: 'GET_AUTHORS', payload: resp.data })
   } catch (err) {
 
   }
@@ -61,8 +62,9 @@ function* deleteAuthor(action) {
     yield call(ApiService.DeleteAuthor, action.payload.id,  action.payload.token)
     PopUp.exibeMensagem('success', "Author was deleted with success");
     
-    const resp = yield call(ApiService.ListaAuthors, action.payload.token)
-    yield put({ type: 'GET_AUTHORS', payload: resp.data })
+    
+    // const resp = yield call(ApiService.ListaAuthors, action.payload.token)
+    // yield put({ type: 'GET_AUTHORS', payload: resp.data })
   } catch (err) {
 
   }

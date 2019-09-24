@@ -1,21 +1,21 @@
 import React, { Fragment, Component } from 'react'
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import Header from '../../components/header/Header'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getAuthors,deleteAuthor } from './authorAction';
+import { getAuthors, deleteAuthor } from './authorAction';
 
 class Author extends Component {
     // constructor(props){
     //     super(props)
     // }
     componentWillMount() {
-        
+
         this.props.getAuthors(this.props.user);
-        
+
     }
     // componentWillUpdate(){this.props.getAuthors(this.props.user);}
-    
+
     render() {
         let linhas = this.props.names.map((item) => {
 
@@ -26,15 +26,13 @@ class Author extends Component {
                             {item.name}
                         </NavLink>
                     </td>
-                    <td key={`${item.id+201}${item.name}`}>
+                    <td key={`${item.id + 201}${item.name}`}>
                         <NavLink to={`author/form/${item.id}/`}>
                             Update
                         </NavLink>
                     </td>
-                    <td key={`${item.id-320}${item.name}`} onClick={()=>{this.props.deleteAuthor(item.id, this.props.user)}}>
-                        <a href="#" >
-                            Delete
-                        </a>    
+                    <td key={`${item.id - 320}${item.name}`} onClick={(e) => { this.props.deleteAuthor(e, item.id, this.props.user) }} style={{cursor: 'pointer', color: "#039be5"}}>
+                        X
                     </td>
                 </tr>)
 
@@ -67,7 +65,7 @@ class Author extends Component {
 }
 
 function mapStateToProps(state) {
-    
+
     return {
         names: state.authors.list,
         user: state.user.data
@@ -75,7 +73,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ getAuthors,deleteAuthor }, dispatch)
+    return bindActionCreators({ getAuthors, deleteAuthor }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Author)
