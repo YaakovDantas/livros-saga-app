@@ -9,27 +9,8 @@ import AuthorDetail from './pages/author/AuthorDetail'
 import Book from './pages/book/Book'
 import Login from './pages/login/Login'
 import * as serviceWorker from './serviceWorker'
-import { combineReducers, createStore, applyMiddleware } from 'redux'
-import promise from 'redux-promise'
 import { Provider } from 'react-redux'
-import thunk from 'redux-thunk'
-import authorReducer from './pages/author/authorReducer'
-import bookReducer from './pages/book/bookReducer'
-import loginReducer from './pages/login/loginReducer'
-import userReducer from './utils/userReducer'
-
-const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-
-const reducers = combineReducers({
-    authors: authorReducer,
-    author: authorReducer,
-    authorForm: authorReducer,
-    books: bookReducer,
-    user: userReducer,
-    login: loginReducer,
-})
-
-const store = applyMiddleware(thunk,promise)(createStore)(reducers, devTools)
+import store from './store/index';
 
 ReactDOM.render(
     <Provider store={store}>

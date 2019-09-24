@@ -10,9 +10,12 @@ class Author extends Component {
     //     super(props)
     // }
     componentWillMount() {
+        
         this.props.getAuthors(this.props.user);
+        
     }
-
+    // componentWillUpdate(){this.props.getAuthors(this.props.user);}
+    
     render() {
         let linhas = this.props.names.map((item) => {
 
@@ -64,6 +67,7 @@ class Author extends Component {
 }
 
 function mapStateToProps(state) {
+    
     return {
         names: state.authors.list,
         user: state.user.data

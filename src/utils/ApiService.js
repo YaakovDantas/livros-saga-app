@@ -75,6 +75,7 @@ const ApiService = {
             .then(res => res.json());
     },
     loginUser: (email, password) => {
+        
         // FormData = new FormData();
         // FormData.append('email', 'teste@gmail.com');
         // FormData.append('password', 'senha');

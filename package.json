@@ -11,8 +11,8 @@
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.1.1",
     "redux": "^3.6.0",
-    "redux-thunk": "^2.2.0",
-    "validator": "^10.11.0"
+    "validator": "^10.11.0",
+    "redux-saga": "^0.16.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -34,8 +34,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "redux-promise": "^0.5.3"
   }
 }

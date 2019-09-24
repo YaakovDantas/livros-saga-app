@@ -1,4 +1,4 @@
-import ApiService from './ApiService';
+
 
 
 // export function getUserToken(e) {
@@ -20,14 +20,21 @@ export function logoutUser(){
 
 export function loginUser(email,senha){
     
-    return dispatch => {
-        ApiService.loginUser(email, senha)
-        .then(resp => {
-            let token = resp.data.access_token;
-            dispatch( {  type:'SET_TOKEN', payload: token  } )
-           
-        }).catch(function (error) {
-            dispatch( logoutUser() )
-        });
-    }
+    return { 
+        type : 'SAGA_LOGIN_USER',
+        payload : [email, senha]
+     }
 }
+// export function loginUser(email,senha){
+    
+//     return dispatch => {
+//         ApiService.loginUser(email, senha)
+//         .then(resp => {
+//             let token = resp.data.access_token;
+//             dispatch( {  type:'SET_TOKEN', payload: token  } )
+           
+//         }).catch(function (error) {
+//             dispatch( logoutUser() )
+//         });
+//     }
+// }

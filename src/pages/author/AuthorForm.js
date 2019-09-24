@@ -2,7 +2,7 @@ import React, { Fragment, Component } from 'react'
 import Header from '../../components/header/Header'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getAuthor, changeNameForm, createAuthor,attAuthor } from './authorAction';
+import { getAuthor, changeNameForm, createAuthor,attAuthor, cleanName } from './authorAction';
 import FormValidator from '../../utils/formValidator';
 import PopUp from '../../utils/popUp';
 
@@ -27,6 +27,8 @@ class AuthorForm extends Component {
             this.props.getAuthor(this.props.match.params.id, this.props.user);
             this.setState({ hasID: true })
 
+        }else{
+           this.props.cleanName()
         }
     }
     UNSAFE_componentWillReceiveProps(nextProps) {
@@ -106,7 +108,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ getAuthor, changeNameForm, createAuthor, attAuthor }, dispatch)
+    return bindActionCreators({ getAuthor, changeNameForm, createAuthor, attAuthor, cleanName }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthorForm)
